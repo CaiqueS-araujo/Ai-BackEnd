@@ -1,0 +1,11 @@
+
+data/
+.vscode/
+
+Ai-BackEnd/target/
+Ai-BackEnd/*.class
+Ai-BackEnd/*.jar
+
+Ai-FrontEnd/node_modules/
+Ai-FrontEnd/dist/
+Ai-FrontEnd/.env*

@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+ 
+  postgres-db:
+    image: ankane/pgvector:latest
+    container_name: ia-postgres-vector
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ia_database
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  n8n-orquestrador:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: ia-n8n-orquestrador
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=false
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      - postgres-db
+
+volumes:
+  pgdata:
+  n8n_data:
